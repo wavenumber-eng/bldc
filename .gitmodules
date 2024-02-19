@@ -1,0 +1,4 @@
+[submodule "src/blcd_encoder_sim/tinyusb"]
+	path = src/blcd_encoder_sim/tinyusb
+	url = https://github.com/wavenumber-eng/tinyusb.git
+	branch = MCX
