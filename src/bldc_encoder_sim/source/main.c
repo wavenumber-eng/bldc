@@ -4,46 +4,34 @@
 #include "board.h"
 #include "fsl_clock.h"
 #include "fsl_reset.h"
-#include "bsp/board_api.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
 #include "usb_tasks.h"
 #include <stdbool.h>
 
-/*******************************************************************************
- * Definitions
- ******************************************************************************/
-
 #define XTAL0_CLK_HZ (24 * 1000 * 1000U)
 
-uint8_t hall_sensor_state = 0;
+volatile uint8_t hall_sensor_state = 0;
 
 
-/*******************************************************************************
- * Code
- ******************************************************************************/
-/*!
- * @brief Main function
- */
 int main(void)
 {
-  /* Init board hardware. */
+
   BOARD_InitPins();
   BOARD_InitBootClocks();
   CLOCK_SetupExtClocking(XTAL0_CLK_HZ);
   BOARD_InitDebugConsole();
 
-  /* Enable USB clock */
   RESET_PeripheralReset(kUSB0_RST_SHIFT_RSTn);
   CLOCK_EnableUsbfsClock();
 
-  tusb_init();
+  tusb_init(); 		 // TinyUSB device stack init task
 
   SysTick_Config(SystemCoreClock / 1000);
 
   while (1)
   {
-    tud_task(); // tinyusb device task
+    tud_task(); 	  // TinyUSB device task
     webserial_task(); // application task
   }
 }
