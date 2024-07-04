@@ -1,0 +1,3 @@
+[submodule "src/bldc_encoder_sim/tinyusb"]
+	path = src/bldc_encoder_sim/tinyusb
+	url = https://github.com/hathach/tinyusb.git
