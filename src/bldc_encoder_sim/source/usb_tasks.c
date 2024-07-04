@@ -4,7 +4,7 @@
 #include "commands.h"
 #include "usb_descriptors.h"
 
-#define URL "localhost:8000"
+#define URL "wavenumber-eng.github.io/bldc/"
 
 void cdc_task(void);
 void webserial_task(void);
@@ -15,7 +15,7 @@ const tusb_desc_webusb_url_t desc_url =
     {
         .bLength = 3 + sizeof(URL) - 1,
         .bDescriptorType = 3, // WEBUSB URL type
-        .bScheme = 0,         // 0: http, 1: https
+        .bScheme = 1,         // 0: http, 1: https
         .url = URL};
 
 // send characters to both CDC and WebUSB
@@ -131,6 +131,7 @@ void webserial_task(void)
             uint8_t buf[64];
             uint32_t count = tud_vendor_read(buf, sizeof(buf));
 
+            //todo, don't assume command will come in one transacation.
             if (count > 0)
             {
                 commands__check_command(buf);

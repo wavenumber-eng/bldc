@@ -6,7 +6,7 @@
 
 #include "fsl_clock.h"
 
-volatile uint16_t step_freq;
+volatile uint32_t step_freq;
 
     
 /**

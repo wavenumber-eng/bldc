@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:manifest xmlns:ns2="http://nxp.com/ksdk/2.0/ksdk_manifest_v3.0.xsd" format_version="3.13" api_version="2.0.0" configuration="cd37e52bfae33355a41bbeaf66a13afc" id="SDK_2.x_FRDM-MCXA153" name="FRDM-MCXA153" brief="This is SDK version 2.14.2 manifest file. It describes the content of the FRDM-MCXA153 and additional settings for tools that support SDK version 2.14.2">
+    <ksdk id="MCUXpresso2142" name="MCUXpresso2142" version="2.14.2" revision="epluginsite798 2024-01-29"/>
+    <compilers>
+        <compiler type="gcc" id="compiler_gcc" name="gcc"/>
+    </compilers>
+    <toolchainSettings>
+        <toolchainSetting id="com.nxp.mcuxpresso" name="mcuxpresso" full_name="MCUXpresso IDE" version="11.9.0" toolchain="mcuxpresso" compiler="compiler_gcc">
+            <option id="gnu.cpp.compiler.option.optimization.flags" type="string" user_name="">
+                <value>-fno-common</value>
+            </option>
+            <option id="gnu.c.compiler.option.optimization.flags" type="string" user_name="">
+                <value>-fno-common</value>
+            </option>
+            <option id="gnu.cpp.link.option.nostdlibs" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+            <option id="com.crt.advproject.link.cpp.flashconfigenable" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+            <option id="com.crt.advproject.link.flashconfigenable" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+            <option id="gnu.c.link.option.nostdlibs" type="boolean" user_name="">
+                <value>true</value>
+            </option>
+        </toolchainSetting>
+    </toolchainSettings>
+    <toolchains>
+        <toolchain type="mcuxpresso" vendor="NXP Semiconductors" vendor_url="http://www.nxp.com" id="mcuxpresso" name="MCUXpresso_IDE" full_name="MCUXpresso IDE" version="11.9.0" compiler="compiler_gcc">
+            <debug>
+                <debug_configuration probe="LinkServer" id="com.crt.advproject.config.exe.release" name="Release Configuration">
+                    <scripts>
+                        <script type="init" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>
+set remotetimeout 60000
+##target_extended_remote##
+set mem inaccessible-by-default ${mem.access}
+mon ondisconnect ${ondisconnect}
+set arm force-mode thumb
+${load}</script>
+                        </script>
+                        <script type="run" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>${run}</script>
+                        </script>
+                    </scripts>
+                    <params>
+                        <params value="false" id="vector.catch.release.mcuxpresso" name="vector.catch"/>
+                        <params value="Disable" id="internal.cache.release.mcuxpresso" name="internal.cache"/>
+                    </params>
+                </debug_configuration>
+                <debug_configuration probe="LinkServer" id="com.crt.advproject.config.exe.debug" name="Debug Configuration">
+                    <scripts>
+                        <script type="init" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>
+set remotetimeout 60000
+##target_extended_remote##
+set mem inaccessible-by-default ${mem.access}
+mon ondisconnect ${ondisconnect}
+set arm force-mode thumb
+${load}</script>
+                        </script>
+                        <script type="run" silent="false" emulators="${gdb.stub} -mi -info-emu">
+                            <script>${run}</script>
+                        </script>
+                    </scripts>
+                    <params>
+                        <params value="false" id="vector.catch.debug.mcuxpresso" name="vector.catch"/>
+                        <params value="Disable" id="internal.cache.debug.mcuxpresso" name="internal.cache"/>
+                    </params>
+                </debug_configuration>
+                <debug_configuration probe="Segger" id="com.nxp.mcuxpresso.core.debug.support.segger.debug" name="Debug Configuration"/>
+                <debug_configuration probe="Segger" id="com.nxp.mcuxpresso.core.debug.support.segger.release" name="Release Configuration"/>
+            </debug>
+        </toolchain>
+    </toolchains>
+    <boards>
+        <board package="MCXA153VLH" id="frdmmcxa153" name="FRDM-MCXA153" version="1.0.0">
+            <description>MCXA153 Evaluation Kit</description>
+            <image path="boards/frdmmcxa153" type="image">
+                <files mask="frdmmcxa153.png"/>
+            </image>
+        </board>
+    </boards>
+    <devices>
+        <device family="MCXA1XX" platform="MCX" id="MCXA153" name="MCXA153" full_name="MCXA153" version="1.0.0">
+            <description>Arm® Cortex®-M33 microcontroller with multiple high-speed connectivity, operating up to 96 MHz, serial peripherals, timers, analog and low power consumption.</description>
+            <metadataSet>
+                <metadata key="compatible_device.segger" value="MCXA153"/>
+                <metadata key="vendor" value="NXP"/>
+            </metadataSet>
+            <defines>
+                <define name="CPU_$|package|" value=""/>
+                <define name="CPU_$|package|_$|core|" value=""/>
+            </defines>
+            <core fpu="false" dsp="false" type="cm33_nodsp" id="cm33_core0_MCXA153" name="cm33_core0"/>
+            <memory>
+                <memoryBlock addr="00000000" size="00020000" type="Flash" access="RO" id="PROGRAM_FLASH_MCXA153" name="PROGRAM_FLASH"/>
+                <memoryBlock addr="20000000" size="00006000" type="RAM" access="RW" id="SRAM_MCXA153" name="SRAM"/>
+                <memoryBlock addr="04000000" size="00002000" type="RAM" access="RW" id="SRAMX0_MCXA153" name="SRAMX0"/>
+                <memoryBlock addr="04002000" size="00001000" type="RAM" access="RW" id="SRAMX1_MCXA153" name="SRAMX1"/>
+            </memory>
+            <total_memory flash_size_kb="128" ram_size_kb="4"/>
+            <package id="MCXA153VLH" name="MCXA153VLH"/>
+            <package id="MCXA153VFT" name="MCXA153VFT"/>
+            <package id="MCXA153VFM" name="MCXA153VFM"/>
+            <evaluation_boards>
+                <evaluation_board name="frdmmcxa153"/>
+            </evaluation_boards>
+            <debug_configurations>
+                <debug_configuration id_refs="com.crt.advproject.config.exe.debug com.crt.advproject.config.exe.release">
+                    <params>
+                        <params value="true" id="internal.attach.slave.release.MCXA153" name="internal.attach.slave"/>
+                        <params value="true" id="internal.multi.swd.release.MCXA153" name="internal.multi.swd"/>
+                        <params value="SWD" id="internal.wiretype.release.MCXA153" name="internal.wiretype"/>
+                        <params value="true" id="internal.has_swo.release.MCXA153" name="internal.has_swo"/>
+                        <params value="--bootromstall 0x40091040" id="misc.options.MCXA153" name="misc.options"/>
+                    </params>
+                    <drivers>
+                        <driver id_refs="PROGRAM_FLASH_MCXA153">
+                            <driverBinary path="devices/MCXA153/mcuxpresso" type="binary">
+<files mask="MCXA1xx.cfx"/>
+                            </driverBinary>
+                        </driver>
+                    </drivers>
+                </debug_configuration>
+            </debug_configurations>
+            <linkerSettings nature="c_nature">
+                <linker property="start_symbol" value="ResetISR"/>
+                <linker property="text_align" value="4"/>
+                <linker property="data_align" value="4"/>
+                <linker property="bss_align" value="4"/>
+                <linker property="mtb_supported" value="false"/>
+            </linkerSettings>
+            <linkerSettings nature="cpp_nature">
+                <linker property="start_symbol" value="ResetISR"/>
+                <linker property="text_align" value="4"/>
+                <linker property="data_align" value="4"/>
+                <linker property="bss_align" value="4"/>
+                <linker property="mtb_supported" value="false"/>
+            </linkerSettings>
+        </device>
+    </devices>
+    <components>
+        <component user_visible="true" type="debugger" devices="MCXA153" package_base_path="devices/MCXA153" project_base_path="svd" category="Board Support/SDK Project Template" id="platform.devices.MCXA153_debugger.MCXA153" name="Device MCXA153_debugger" full_name="Device MCXA153_debugger" brief="Device MCXA153_debugger" version="1.0.0">
+            <source relative_path="./" type="xml">
+                <files mask="MCXA153.xml"/>
+            </source>
+        </component>
+    </components>
+</ns2:manifest>

@@ -7,7 +7,7 @@
 #include "bsp/board_api.h"
 #include "tusb.h"
 #include "usb_descriptors.h"
-
+#include "usb_tasks.h"
 #include <stdbool.h>
 
 /*******************************************************************************
@@ -39,7 +39,6 @@ int main(void)
 
   tusb_init();
 
-  /* interrupt every 1ms */
   SysTick_Config(SystemCoreClock / 1000);
 
   while (1)
