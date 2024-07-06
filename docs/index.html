@@ -15,27 +15,32 @@
 
 	<script src="https://kit.fontawesome.com/73d3ed437d.js" crossorigin="anonymous"></script>
 
-	<!-- Linking the JavaScript file -->
-	<script src="script.js"></script>
 
 	<article class="content">
 		<h1>BLDC Encoder Simulator</h1>
 		<hr>
 
-		<div class="slidersContainer">
+		<div class="ui-container">
 			<!-- Buttons -->
-			<div class="buttonContainer">
+			<div class="button-container">
 				<button id="connectButton">Connect USB Device</button>
 			</div>
 
-			<!-- Frequency slider -->
-			<div>
-				<label for="freqSlider">Step Frequency:</label>
+			<div class="slider-container">
+				<div class="label-container">
+					<label for="freqSlider" class="slider-label">Commutation Step Rate : </label>
+					<span id="freqSliderValue">1000</span> <span>ms</span>
+				</div>
 				<input type="range" id="freqSlider" min="10" max="5000" value="1000">
-				<span id="freqSliderValue">1000</span>
 			</div>
-	
+
 		</div>
+
+		<div class="device-list" id="deviceList">
+			<!-- Connected devices will be listed here -->
+		</div>
+
+		
 	</article>
 
 	<div class="bottom_nav">
@@ -43,6 +48,10 @@
 			<img class="logo" onclick="window.location.href='https://www.wavenumber.net/';" src="assets/logo.png" alt="Wavenumber logo">
 		</div>
 	</div>
+
+
+		<!-- Linking the JavaScript file -->
+		<script src="script.js"></script>
 
 </body>
 

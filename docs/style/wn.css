@@ -247,3 +247,88 @@ body{
   color: #1da1f2; /* Change color on hover */
   transition: linear 0.2s;
 }
+
+:root {
+  --slider-background: #242222;
+  --thumb-color: #d9520e;
+  --button-color: #b34e1ca7;
+  --button-color-hover: #b34e1cf3;
+  
+  --label-color: #e7e7e7;
+  --value-color: #e2e2e2;
+}
+
+/* Styles for the button */
+
+/* Styles for the button container */
+.button-container {
+  display: flex;
+  justify-content: center; /* Center align items horizontally */
+  margin-top: 20px; /* Add some spacing between sliders and button */
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--button-color); /* Using red-500 color */
+  color: #fff;
+  border: none;
+  border-radius: 0px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--button-color-hover); /* Using red-700 color on hover */
+}
+
+
+
+/* Container for the slider and text */
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Label and value container */
+.label-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+/* Label for the slider */
+.slider-label {
+  margin-right: 10px;
+  color: var(--label-color);
+}
+
+/* Value for the slider */
+#freqSliderValue {
+  color: var(--value-color);
+}
+
+/* Styles for the range input */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  background: var(--slider-background);
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+/* Styling the thumb (draggable part) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 30px; 
+  background: var(--thumb-color);
+  cursor: pointer;
+  border-radius: 0px; 
+}
