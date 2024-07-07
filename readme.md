@@ -1,9 +1,10 @@
-# FRDM-MCXA153 TinyUSB Web serial demo
+# FRDM-MCXA153 TinyUSB Web USB demo
 
 ## Setup
 
 - Clone this repo.
-- TinyUSB is a sub module to this repo. Open a terminal run
+  
+- TinyUSB is a submodule to this repo. Open a terminal and run
 
 `git submodule init`
 
@@ -11,6 +12,7 @@
 
 
 - MCUXpresso IDE project located in *src/bldc_encoder_sim*
+  
 - This sample was built with MCUXpresso v11.9.0 and MCXA153 SDK V2.14
 
 ## Demonstration
