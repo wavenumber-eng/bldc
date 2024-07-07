@@ -21,7 +21,7 @@ This sample is a simple application which implements USB CDC (Serial port) and a
 
 The folder /docs has a simple html/javascript example which is hosted on github pages. You can browser to https://bldc.wavenumber.net or https://wavenumber-eng.github.io/bldc/
 
-This example is a simple tool to simulate 3-phase hall effect signals for a BLDC motor circtuit.  The webusb interface has a slider which sets the communtation / step rate of the simulated hall effect sensor.
+This example is a simple tool to simulate 3-phase hall effect signals for a BLDC motor circtuit.  The WebUSB interface has a slider which sets the communtation / step rate of the simulated hall effect sensor.
 
 The FRDM-MCXA153 will generate the signals on GPIO ports 1-10, 1-12 and 1-13.
 
