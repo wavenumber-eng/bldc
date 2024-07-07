@@ -7,10 +7,14 @@
 #define URL "wavenumber-eng.github.io/bldc/"
 
 void cdc_task(void);
-void webserial_task(void);
+void webusb_task(void);
 
 static bool web_serial_connected = false;
 
+bool webserial__is_connected()
+{
+	return web_serial_connected;
+}
 const tusb_desc_webusb_url_t desc_url =
     {
         .bLength = 3 + sizeof(URL) - 1,
@@ -122,16 +126,16 @@ bool tud_vendor_control_xfer_cb(uint8_t rhport, uint8_t stage, tusb_control_requ
     return false;
 }
 
-void webserial_task(void)
+void webusb_task(void)
 {
-    if (web_serial_connected | 1) // I havent understand yet
+    if (tud_vendor_available())
     {
         if (tud_vendor_available())
         {
             uint8_t buf[64];
             uint32_t count = tud_vendor_read(buf, sizeof(buf));
 
-            //todo, don't assume command will come in one transacation.
+            //todo, don't assume command will come in one transaction.
             if (count > 0)
             {
                 commands__check_command(buf);

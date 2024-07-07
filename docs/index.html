@@ -19,38 +19,32 @@
 	<article class="content">
 		<h1>BLDC Encoder Simulator</h1>
 		<hr>
-
+		<br>
 		<div class="ui-container">
-			<!-- Buttons -->
 			<div class="button-container">
-				<button id="connectButton">Connect USB Device</button>
+				<button id="connectButton">Connect</button>
 			</div>
-
 			<div class="slider-container">
 				<div class="label-container">
-					<label for="freqSlider" class="slider-label">Commutation Step Rate : </label>
-					<span id="freqSliderValue">1000</span> <span>ms</span>
+					<label for="freqSlider" class="slider-label"> Electrical Frequency : </label>
+					<span id="freqSliderValue">0</span>
 				</div>
-				<input type="range" id="freqSlider" min="10" max="5000" value="1000">
+				<input type="range" id="freqSlider" min="0" max="100" value="0">
 			</div>
 
 		</div>
-
-		<div class="device-list" id="deviceList">
-			<!-- Connected devices will be listed here -->
-		</div>
-
-		
 	</article>
 
 	<div class="bottom_nav">
+		<div class="logo-container">
+			<img class="logo" onclick="window.location.href='https://www.nxp.com/';" src="assets/nxp_logo.png" alt="NXP logo">
+		</div>
+
 		<div class="logo-container">
 			<img class="logo" onclick="window.location.href='https://www.wavenumber.net/';" src="assets/logo.png" alt="Wavenumber logo">
 		</div>
 	</div>
 
-
-		<!-- Linking the JavaScript file -->
 		<script src="script.js"></script>
 
 </body>

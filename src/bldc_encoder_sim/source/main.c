@@ -8,11 +8,12 @@
 #include "usb_descriptors.h"
 #include "usb_tasks.h"
 #include <stdbool.h>
+#include "usb_tasks.h"
+#include "commands.h"
 
 #define XTAL0_CLK_HZ (24 * 1000 * 1000U)
 
 volatile uint8_t hall_sensor_state = 0;
-
 
 int main(void)
 {
@@ -32,7 +33,7 @@ int main(void)
   while (1)
   {
     tud_task(); 	  // TinyUSB device task
-    webserial_task(); // application task
+    webusb_task(); // application task
   }
 }
 
@@ -48,46 +49,49 @@ void USB0_IRQHandler(void)
 void SysTick_Handler(void)
 {
 
-  switch (hall_sensor_state)
-  {
+	  switch (hall_sensor_state)
+	  {
 
-  case 0:
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 0);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 0);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 1);
-    break;
+	  case 0:
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 0);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 0);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 1);
+		break;
 
-  case 1:
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 0);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 0);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 0);
-    break;
+	  case 1:
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 0);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 0);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 0);
+		break;
 
-  case 2:
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 1);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 0);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 0);
+	  case 2:
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 1);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 0);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 0);
 
-    break;
+		break;
 
-  case 3:
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 1);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 1);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 0);
-    break;
+	  case 3:
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 1);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 1);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 0);
+		break;
 
-  case 4:
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 1);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 1);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 1);
-    break;
+	  case 4:
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 1);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 1);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 1);
+		break;
 
-  case 5:
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 0);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 1);
-    GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 1);
-    break;
-  }
+	  case 5:
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S1_PIN, 0);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S2_PIN, 1);
+		GPIO_PinWrite(GPIO1, BOARD_INITPINS_POS_S3_PIN, 1);
+		break;
+	  }
 
-  hall_sensor_state = (hall_sensor_state >= 5) ? 0 : (hall_sensor_state + 1);
+	  if(tud_vendor_mounted() && enable_hall_effect)
+	  {
+		  hall_sensor_state = (hall_sensor_state >= 5) ? 0 : (hall_sensor_state + 1);
+	  }
 }
