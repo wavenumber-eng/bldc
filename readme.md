@@ -17,7 +17,7 @@
 
 ## Demonstration
 
-This sample is a simple application which implements USB CDC (Serial port) and a WebSserial interface. WeBserial is a browser API that enables interaction with USB devices in a web browser.  This enables custom USB hardware GUIs without special driver or software installation.
+This sample is a simple application which implements a USB CDC (Serial port) and a WebSserial interface. WebSerial is a browser API that enables interaction with USB devices from a web page.  This enables custom USB hardware GUIs without special driver or software installation.
 
 The folder /docs has a simple html/javascript example which is hosted on github pages. You can browser to https://bldc.wavenumber.net or https://wavenumber-eng.github.io/bldc/
 
