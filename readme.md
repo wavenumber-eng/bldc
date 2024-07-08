@@ -25,7 +25,9 @@ This example is a simple tool to simulate 3-phase hall effect signals for a BLDC
 
 The FRDM-MCXA153 will generate the signals on GPIO ports 1-10, 1-12 and 1-13.
 
-
-
 https://github.com/wavenumber-eng/bldc/assets/1431437/450e826b-8201-41ae-a72a-6a1ba2d79749
 
+
+## Paper
+
+https://www.wavenumber.net/papers/using-tinyusb-mcx-a-and-webusb-to-create-a-bldc-motor-controller-test-tool/
