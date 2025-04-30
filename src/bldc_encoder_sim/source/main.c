@@ -20,7 +20,7 @@ int main(void)
 
   BOARD_InitPins();
   BOARD_InitBootClocks();
-  CLOCK_SetupExtClocking(XTAL0_CLK_HZ);
+  //CLOCK_SetupExtClocking(XTAL0_CLK_HZ);
   BOARD_InitDebugConsole();
 
   RESET_PeripheralReset(kUSB0_RST_SHIFT_RSTn);
